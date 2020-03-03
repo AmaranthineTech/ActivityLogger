@@ -30,12 +30,26 @@
     
     public var wrappedValue : T {
         get {
-            self.fileHandle?.log(TheMessage: "Value: \(internalValue) fetched.")
+            if #available(iOS 13.0, *)
+            {
+                self.fileHandle?.log(TheMessage: "Value: \(internalValue) fetched.")
+            }
+            else
+            {
+                // Fallback on earlier versions
+            }
             return internalValue
         }
         set (newValue) {
             internalValue = newValue
-            self.fileHandle?.log(TheMessage: "Value: \(internalValue) written.")
+            if #available(iOS 13.0, *)
+            {
+                self.fileHandle?.log(TheMessage: "Value: \(internalValue) written.")
+            }
+            else
+            {
+                // Fallback on earlier versions
+            }
         }
     }
     
