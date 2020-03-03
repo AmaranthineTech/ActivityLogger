@@ -55,7 +55,14 @@ final class FileAccess
                                                                    create: true)
         
         self.logFileURL             = self.documentsDirectoryURL?.appendingPathComponent(self.logFileName).appendingPathExtension(self.logFileExtension)
-        print(self.logFileURL?.absoluteString)
+        if FileManager.default.fileExists(atPath: self.logFileURL!.path)
+        {
+            print(self.logFileURL?.absoluteString)
+        }
+        else
+        {
+            print(#line, "ERR: FIle not found")
+        }
     }
     //----------------------------------------------------------------------------------------------------
     //MARK: - Variables
@@ -96,6 +103,15 @@ final class FileAccess
         catch let error
         {
             print(#line, error)
+        }
+        
+        if FileManager.default.fileExists(atPath: self.logFileURL!.path)
+        {
+            print(self.logFileURL?.absoluteString)
+        }
+        else
+        {
+            print(#line, "ERR: FIle not found")
         }
     }
     
